@@ -10,26 +10,21 @@ import br.com.estudos.jpasparkfreemarker.utils.JPAUtil;
  * @author turbiani
  *
  */
-public class TesteInsereConta {
+public class TestaRemoveConta {
 	public static void main(String[] args) {
-		
 		EntityManager em = new JPAUtil().getEntityManager();
 		
 		ContaDAO dao = new ContaDAO(em);
 		
-		Conta conta = new Conta();
-		conta.setTitular("Jeh");
-		conta.setNumero("101112");
-		conta.setBanco("Banco do Brasil");
-		conta.setAgencia("Itaim");
-		
 		em.getTransaction().begin();
 		
-		dao.adiciona(conta);
+		Conta encontrado = dao.busca(2);
+		dao.remove(encontrado);
 		
 		em.getTransaction().commit();
-		em.close();
 		
-		System.out.println("Conta gravada com sucesso!");
+		System.out.println(encontrado.getTitular());
+		
+		em.close();
 	}
 }

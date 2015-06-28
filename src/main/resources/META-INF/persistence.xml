@@ -12,7 +12,8 @@
 
 		<!-- Aqui sao listadas todas as entidades -->
 		<class>br.com.estudos.jpasparkfreemarker.entity.Conta</class>
-
+		<class>br.com.estudos.jpasparkfreemarker.entity.Movimentacao</class>
+	
 		<properties>
 
 			<!-- Propriedades JDBC -->

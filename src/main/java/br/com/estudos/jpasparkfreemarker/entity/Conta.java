@@ -9,6 +9,10 @@ import javax.persistence.Id;
  *
  */
 
+/**
+ * @author turbiani
+ *
+ */
 @Entity
 public class Conta {
 	
