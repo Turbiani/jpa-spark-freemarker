@@ -2,7 +2,7 @@ package br.com.estudos.jpasparkfreemarker.teste;
 
 import javax.persistence.EntityManager;
 
-import br.com.estudos.jpasparkfreemarker.dao.ContaDAO;
+import br.com.estudos.jpasparkfreemarker.dao.impl.ContaDAO;
 import br.com.estudos.jpasparkfreemarker.entity.Conta;
 import br.com.estudos.jpasparkfreemarker.utils.JPAUtil;
 

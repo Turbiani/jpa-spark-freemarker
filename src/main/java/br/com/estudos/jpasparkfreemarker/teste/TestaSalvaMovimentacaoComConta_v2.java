@@ -5,8 +5,8 @@ import java.util.Calendar;
 
 import javax.persistence.EntityManager;
 
-import br.com.estudos.jpasparkfreemarker.dao.ContaDAO;
-import br.com.estudos.jpasparkfreemarker.dao.MovimentacaoDAO;
+import br.com.estudos.jpasparkfreemarker.dao.impl.ContaDAO;
+import br.com.estudos.jpasparkfreemarker.dao.impl.MovimentacaoDAO;
 import br.com.estudos.jpasparkfreemarker.entity.Conta;
 import br.com.estudos.jpasparkfreemarker.entity.Movimentacao;
 import br.com.estudos.jpasparkfreemarker.entity.TipoMovimentacao;
