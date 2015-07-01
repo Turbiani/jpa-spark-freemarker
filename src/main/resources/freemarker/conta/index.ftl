@@ -28,7 +28,7 @@
 		<div class="row">
 			<ul class="list-group">
 			    <li class="list-group-item">
-			    	<a href="#">Cadastra</a>
+			    	<a href="/conta/cadastra">Cadastra</a>
 			    </li>
 			    <li class="list-group-item">
 			    	<a href="#">Busca</a>

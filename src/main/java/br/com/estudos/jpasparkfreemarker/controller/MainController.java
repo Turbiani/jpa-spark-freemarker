@@ -143,6 +143,15 @@ public class MainController {
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
@@ -178,7 +187,51 @@ public class MainController {
 				}
 			}
 		});
-
+		Spark.get(new TemplateBaseRoute("/conta/cadastra", "/conta/cadastra.ftl") {
+			@Override
+			protected void doHandle(Request request, Response response, Writer writer)
+					throws IOException, TemplateException {
+				 
+				Map<String, Object> document = new HashMap<String, Object>();
+					
+										
+					template.process(document, writer);
+			}
+		});
+		Spark.post(new TemplateBaseRoute("/conta/cadastra", "/conta/sucesso.ftl") {
+			@Override
+			protected void doHandle(Request request, Response response, Writer writer)
+					throws IOException, TemplateException {
+				 
+				CrudFacade<Conta> crudConta = new CrudFacade<Conta>(Conta.class);
+				
+				Conta conta = new Conta();
+				conta.setAgencia(request.params("agencia"));
+				conta.setTitular(request.params("titular"));
+				conta.setNumero(request.params("numero"));
+				conta.setBanco(request.params("banco"));
+				
+				try {
+					crudConta.adiciona(conta);
+					
+					Map<String, Object> document = new HashMap<String, Object>();
+										
+					template.process(document, writer);
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}	
+		});
 	}
 	
 	

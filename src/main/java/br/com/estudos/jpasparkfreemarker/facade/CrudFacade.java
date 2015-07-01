@@ -79,36 +79,49 @@ public class CrudFacade <T>{
 	
 	/**
 	 * @param object
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public void adiciona(T object){
+	public void adiciona(T object) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		EntityManager em = new JPAUtil().getEntityManager();		
 		em.getTransaction().begin();
 		
-		em.persist(object);
+		getDao().adiciona(object, em);
+		
+		em.getTransaction().commit();
 		
 		em.close();
 	}
 	
 	/**
 	 * @param object
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public void remove(T object){
+	public void remove(T object) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		EntityManager em = new JPAUtil().getEntityManager();		
 		em.getTransaction().begin();
 		
-		em.remove(object);
+		getDao().remove(object);
+		
+		em.getTransaction().commit();
 		
 		em.close();
 	}
 	
 	/**
 	 * @param id
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public void remove(int id){
+	public void remove(int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		EntityManager em = new JPAUtil().getEntityManager();		
 		em.getTransaction().begin();
-		
-		em.remove(id);
+			
+		getDao().remove(id);
 		
 		em.close();
 	}
