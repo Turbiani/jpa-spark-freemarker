@@ -23,31 +23,34 @@
   </head>
   <body>
     <div class="container">
-      <h1>Cadastra Conta</h1>
-		<p>Painel administrativo da entidade <em>Conta</em></p>
-      <form  class="form-horizontal" role="form" method="post" action="/conta/cadastra">
+      <div class="jumbotron">
+			<h1>Painel administrativo</h1>
+			<p>Desevolvido com JPA + MySQL, SparkJava + Freemarker + Bootstrap</p>
+		</div>
+		
+      <form  class="form-horizontal" role="form" action="/conta/cadastra" method="POST">
         <div class="form-group">
           <label for="titular" class="control-label col-sm-1">Titular:</label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="titular" placeholder="Nome do titular da conta" size="30">
+            <input type="text" class="form-control" name="titular" placeholder="Nome do titular da conta" size="30">
           </div>  
         </div>
         <div class="form-group">
           <label for="numero" class="control-label col-sm-1">Número:</label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="numero" placeholder="Número da conta" size="30">
+            <input type="text" class="form-control" name="numero" placeholder="Número da conta" size="30">
           </div>       
         </div>
         <div class="form-group">
           <label for="agencia" class="control-label col-sm-1">Agência:</label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="agencia" placeholder="Número da agência" size="30">
+            <input type="text" class="form-control" name="agencia" placeholder="Número da agência" size="30">
           </div>
         </div>
         <div class="form-group">
           <label for="banco" class="control-label col-sm-1">Banco:</label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="banco" placeholder="Nome do banco" size="30">
+            <input type="text" class="form-control" name="banco" placeholder="Nome do banco" size="30">
           </div>  
         </div>
         <button type="submit" class="btn btn-default">Submit</button>

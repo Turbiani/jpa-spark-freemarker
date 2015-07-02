@@ -21,20 +21,20 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body>    
     <div class="container">
-		<h1>Painel administrativo</h1>      
-		<div class="row">
-			<ul class="list-group">
-			    <li class="list-group-item">
-			    	<a href="/conta">Conta</a>
-			    </li>
-			    <li class="list-group-item">
-			    	<a href="#">Movimentacao</a>
-			    </li>
-			</ul>		
-		</div>
-	</div>
+      <div class="jumbotron">
+        <h1>Painel administrativo</h1>
+        <p>Desevolvido com JPA + MySQL, SparkJava + Freemarker + Bootstrap</p>
+      </div> 
+      <ul class="nav nav-pills">        
+        <li><a href="/conta" class="list-group-item">Conta</a></li>
+        <li><a href="#" class="list-group-item">Movimentacao</a></li>        
+      </div>
+    </div>
+		      
+		
+	
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

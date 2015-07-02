@@ -22,9 +22,26 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
-	  <p>Sucesso!</em></p>  
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Painel administrativo</h1>
+			<p>Desevolvido com JPA + MySQL, SparkJava + Freemarker + Bootstrap</p>
+		</div>
+		
+      	<div class="alert alert-success fade in">
+  			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  			<strong>Successo!</strong> Os dados da conta foram salvos no banco de dados.
+		</div>
+		<p>
+			<h3>Vamos verficar essa conta na lista ? 
+				<a href="/conta/lista"><span class="glyphicon glyphicon-list-alt"></span></a>
+			</h3>
+		</p>
     </div>
+    
+    
+    
+    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

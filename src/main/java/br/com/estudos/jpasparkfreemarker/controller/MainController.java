@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -206,10 +210,10 @@ public class MainController {
 				CrudFacade<Conta> crudConta = new CrudFacade<Conta>(Conta.class);
 				
 				Conta conta = new Conta();
-				conta.setAgencia(request.params("agencia"));
-				conta.setTitular(request.params("titular"));
-				conta.setNumero(request.params("numero"));
-				conta.setBanco(request.params("banco"));
+				conta.setAgencia(StringEscapeUtils.escapeHtml4(request.queryParams("agencia")));
+				conta.setTitular(StringEscapeUtils.escapeHtml4(request.queryParams("titular")));
+				conta.setNumero(StringEscapeUtils.escapeHtml4(request.queryParams("numero")));
+				conta.setBanco(StringEscapeUtils.escapeHtml4(request.queryParams("banco")));
 				
 				try {
 					crudConta.adiciona(conta);

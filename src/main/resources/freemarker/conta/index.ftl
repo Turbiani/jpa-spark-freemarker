@@ -21,28 +21,28 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body>  	
     <div class="container">
-		<h1>Conta CRUD</h1>
-		<p>Painel administrativo da entidade <em>Conta</em></p>      
-		<div class="row">
-			<ul class="list-group">
-			    <li class="list-group-item">
-			    	<a href="/conta/cadastra">Cadastra</a>
-			    </li>
-			    <li class="list-group-item">
-			    	<a href="#">Busca</a>
-			    </li>
-			    <li class="list-group-item">
-			    	<a href="#">Altera</a>
-			    </li>
-			    <li class="list-group-item">
-			    	<a href="/conta/lista">Lista</a>
-			    </li>
-			    <li class="list-group-item">
-			    	<a href="#">Exclui</a>
-			    </li>
-			  </ul>		
+    	<div class="jumbotron">
+			<h1>Painel administrativo</h1>
+			<p>Desevolvido com JPA + MySQL, SparkJava + Freemarker + Bootstrap</p>
+		</div> 		     
+		<div class="list-group">
+	    	<a href="/conta/cadastra" class="list-group-item">
+	    		<span class="glyphicon glyphicon-plus"></span> Cadastra
+	    	</a> 
+	    	<a href="#" class="list-group-item">
+	    		<span class="glyphicon glyphicon-zoom-in"></span> Busca
+	    	</a>
+	    	<a href="#" class="list-group-item">
+	    	 	<span class="glyphicon glyphicon-pencil"></span> Altera
+	    	</a>
+	    	<a href="/conta/lista" class="list-group-item">
+	    		<span class="glyphicon glyphicon-list-alt"></span> Lista
+	    	</a>
+	    	<a href="#" class="list-group-item">
+	    		<span class="glyphicon glyphicon-trash"></span> Exclui
+	    	</a>
 		</div>
 	</div>
     

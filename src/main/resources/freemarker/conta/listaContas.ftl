@@ -23,8 +23,10 @@
   </head>
   <body>
     <div class="container">
-      <h1>Lista</h1>
-	  <p>Painel administrativo da entidade <em>Conta</em></p>  
+		<div class="jumbotron">
+			<h1>Painel administrativo</h1>
+			<p>Desevolvido com JPA + MySQL, SparkJava + Freemarker + Bootstrap</p>
+		</div>
       <table class="table table-hover table-bordered">
         <thead>
           <tr>
