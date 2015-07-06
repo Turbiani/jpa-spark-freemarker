@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -20,7 +20,7 @@ import spark.Spark;
 import br.com.estudos.jpasparkfreemarker.dao.impl.ContaDAO;
 import br.com.estudos.jpasparkfreemarker.dao.impl.MovimentacaoDAO;
 import br.com.estudos.jpasparkfreemarker.entity.Conta;
-import br.com.estudos.jpasparkfreemarker.facade.CrudFacade;
+import br.com.estudos.jpasparkfreemarker.facade.impl.CrudFacade;
 import br.com.estudos.jpasparkfreemarker.utils.JPAUtil;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -42,7 +42,7 @@ public class MainController {
 		this.movimentacaoDAO 	= new MovimentacaoDAO();
 		this.JPAUtil            = new JPAUtil();
 		
-		setPort(8082);
+		setPort(8080);
         carregaRotas();
 	}
 	
@@ -61,31 +61,9 @@ public class MainController {
 			@Override
 			protected void doHandle(Request request, Response response, Writer writer)
 					throws IOException, TemplateException {
-				CrudFacade<Conta> crudConta = new CrudFacade<Conta>(Conta.class);
-				
-				Conta conta;
-				try {
-					conta = crudConta.busca(2);
 				
 				Map<String, Object> document = new HashMap<String, Object>();
-
-                if (conta.getTitular() != null) {
-                    document.put("name", conta.getTitular());
-                }
-                
-                template.process(document, writer);
-                
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+				template.process(document, writer);
 			}
 		});		
 		//CONTA CRUD
@@ -93,19 +71,42 @@ public class MainController {
 			@Override
 			protected void doHandle(Request request, Response response, Writer writer)
 					throws IOException, TemplateException {
+				
 				Map<String, Object> document = new HashMap<String, Object>();
                 template.process(document, writer);
 			}
 		});
-		/*Spark.get(new TemplateBaseRoute("/conta/:id", "/conta/dadosConta.ftl") {
+		Spark.get(new TemplateBaseRoute("/conta/busca", "/conta/dadosConta.ftl") {
 			@Override
 			protected void doHandle(Request request, Response response, Writer writer)
 					throws IOException, TemplateException {
 				 
-				String id = request.params(":id");
 				CrudFacade<Conta> crudConta = new CrudFacade<Conta>(Conta.class);
 				
 				try {
+					List<Conta> contas = crudConta.lista();
+				 
+					Map<String, Object> document = new HashMap<String, Object>();
+					
+					document.put("contas", contas);
+					
+					template.process(document, writer);
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
+		});
+		Spark.post(new TemplateBaseRoute("/conta/busca", "/conta/dadosConta.ftl") {
+			@Override
+			protected void doHandle(Request request, Response response, Writer writer)
+					throws IOException, TemplateException {
+				 
+				String id = StringEscapeUtils.escapeHtml4(request.queryParams("id"));
+				CrudFacade<Conta> crudConta = new CrudFacade<Conta>(Conta.class);
+				
+				try {
+					
 					Conta conta = crudConta.busca(Integer.parseInt(id));
 				 
 					Map<String, Object> document = new HashMap<String, Object>();
@@ -114,22 +115,46 @@ public class MainController {
 						document.put("conta", conta);
 					}
 					
+					List<Conta> contas = crudConta.lista();
+					document.put("contas", contas);
+					
 					template.process(document, writer);
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
 			}
-		});*/
+		});
+		Spark.post(new TemplateBaseRoute("/conta/altera", "") {
+			@Override
+			protected void doHandle(Request request, Response response, Writer writer)
+					throws IOException, TemplateException {
+				
+				String id = StringEscapeUtils.escapeHtml4(request.queryParams("idConta")); 
+				CrudFacade<Conta> crudConta = new CrudFacade<Conta>(Conta.class);
+				
+				EntityManager em = JPAUtil.getEntityManager();
+				em.getTransaction().begin();
+				
+				Conta conta = crudConta.busca(Integer.parseInt(id), em);
+				conta.setAgencia(StringEscapeUtils.escapeHtml4(request.queryParams("agencia")));
+				conta.setTitular(StringEscapeUtils.escapeHtml4(request.queryParams("titular")));
+				conta.setNumero(StringEscapeUtils.escapeHtml4(request.queryParams("numero")));
+				conta.setBanco(StringEscapeUtils.escapeHtml4(request.queryParams("banco")));
+				
+				
+				try {
+					crudConta.adiciona(conta, em);
+					em.close();
+					response.redirect("/conta/lista");
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				
+				em.close();
+			}	
+		});
 		Spark.delete(new TemplateBaseRoute("/conta/:id", "/conta/contaRemovida.ftl") {
 			@Override
 			protected void doHandle(Request request, Response response, Writer writer)
@@ -147,16 +172,7 @@ public class MainController {
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
 			}
 		});
 		Spark.get(new TemplateBaseRoute("/conta/lista", "/conta/listaContas.ftl") {
@@ -179,16 +195,7 @@ public class MainController {
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
 			}
 		});
 		Spark.get(new TemplateBaseRoute("/conta/cadastra", "/conta/cadastra.ftl") {
@@ -197,9 +204,8 @@ public class MainController {
 					throws IOException, TemplateException {
 				 
 				Map<String, Object> document = new HashMap<String, Object>();
-					
 										
-					template.process(document, writer);
+				template.process(document, writer);
 			}
 		});
 		Spark.post(new TemplateBaseRoute("/conta/cadastra", "/conta/sucesso.ftl") {
@@ -224,16 +230,7 @@ public class MainController {
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
 			}	
 		});
 	}

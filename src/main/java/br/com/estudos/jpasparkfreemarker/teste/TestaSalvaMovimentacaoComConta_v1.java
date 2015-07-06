@@ -39,11 +39,11 @@ public class TestaSalvaMovimentacaoComConta_v1 {
 		
 		
 		//COLOCANDO NO PERSIST CONTEXT
-		MovimentacaoDAO movimentacaoDao = new MovimentacaoDAO(em);
-		movimentacaoDao.adiciona(movimentacao);
+		MovimentacaoDAO movimentacaoDao = new MovimentacaoDAO();
+		movimentacaoDao.adiciona(movimentacao, em);
 		
 		//PERSISTINDO NO BANCO DE DADOS
-		em.persist(movimentacao);
+		//em.persist(movimentacao);
 		//DARÁ EXCEPTION POIS CONTA ESTÁ FORA DO CONTEXTO DE PERSISTENCIA
 		em.getTransaction().commit();
 		em.close();

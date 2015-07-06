@@ -31,17 +31,14 @@
 	    	<a href="/conta/cadastra" class="list-group-item">
 	    		<span class="glyphicon glyphicon-plus"></span> Cadastra
 	    	</a> 
-	    	<a href="#" class="list-group-item">
-	    		<span class="glyphicon glyphicon-zoom-in"></span> Busca
-	    	</a>
-	    	<a href="#" class="list-group-item">
-	    	 	<span class="glyphicon glyphicon-pencil"></span> Altera
+	    	<a href="/conta/busca" class="list-group-item">
+	    		<span class="glyphicon glyphicon-search"></span> Busca
 	    	</a>
 	    	<a href="/conta/lista" class="list-group-item">
 	    		<span class="glyphicon glyphicon-list-alt"></span> Lista
 	    	</a>
-	    	<a href="#" class="list-group-item">
-	    		<span class="glyphicon glyphicon-trash"></span> Exclui
+	    	<a href="/">
+	    		<span class="glyphicon glyphicon-arrow-left"></span> Voltar
 	    	</a>
 		</div>
 	</div>

@@ -1,29 +1,40 @@
 package br.com.estudos.jpasparkfreemarker.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 
-public abstract class AbstractDAO<T> {
+import br.com.estudos.jpasparkfreemarker.facade.CrudInterface;
+import br.com.estudos.jpasparkfreemarker.utils.JPAUtil;
+
+/**
+ * @author turbiani
+ *
+ * @param <T>
+ */
+public abstract class AbstractDAO<T> implements CrudInterface<T>{
 	
-	public abstract T busca(Integer id);
+	protected EntityManager em;
 	
-	public abstract List<T> lista();
+	/**
+	 * Default Constructor
+	 */
+	public AbstractDAO(){}
 	
-	public abstract void adiciona(T object);
+	/**
+	 * @param em
+	 */
+	public AbstractDAO(EntityManager em){
+		this.em = em;
+	}
 	
-	public abstract void remove(T object);
+	protected EntityManager getEm(){
+		if(this.em==null){
+			this.em = new JPAUtil().getEntityManager();
+		}
+		return this.em;
+	}
 	
-	public abstract void remove(int id);
-	
-	public abstract T busca(Integer id, EntityManager em);
-	
-	public abstract List<T> lista(EntityManager em);
-	
-	public abstract void adiciona(T object, EntityManager em);
-	
-	public abstract void remove(T object, EntityManager em);
-	
-	public abstract void remove(int id, EntityManager em);
+	protected void fechaEm(){
+		this.getEm().close();
+	}	
 
 }

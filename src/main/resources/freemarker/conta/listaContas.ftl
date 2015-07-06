@@ -47,6 +47,9 @@
           </#list>          
         </tbody>
       </table>
+      	<a href="/">
+			<span class="glyphicon glyphicon-arrow-left"></span> Voltar
+		</a>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

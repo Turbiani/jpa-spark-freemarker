@@ -1,18 +1,17 @@
 package br.com.estudos.jpasparkfreemarker.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author turbiani
  *
  */
 
-/**
- * @author turbiani
- *
- */
 @Entity
 public class Conta {
 	
@@ -24,6 +23,9 @@ public class Conta {
 	private String banco;
 	private String agencia;
 	private String numero;
+	
+	@OneToMany(mappedBy="conta")
+	private List<Movimentacao> movimentacoes;
 
 	public Integer getId() {
 		return id;
@@ -61,59 +63,12 @@ public class Conta {
 		this.numero = numero;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((agencia == null) ? 0 : agencia.hashCode());
-		result = prime * result + ((banco == null) ? 0 : banco.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
-		result = prime * result + ((titular == null) ? 0 : titular.hashCode());
-		return result;
+	public List<Movimentacao> getMovimentacoes() {
+		return movimentacoes;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Conta other = (Conta) obj;
-		if (agencia == null) {
-			if (other.agencia != null)
-				return false;
-		} else if (!agencia.equals(other.agencia))
-			return false;
-		if (banco == null) {
-			if (other.banco != null)
-				return false;
-		} else if (!banco.equals(other.banco))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (numero == null) {
-			if (other.numero != null)
-				return false;
-		} else if (!numero.equals(other.numero))
-			return false;
-		if (titular == null) {
-			if (other.titular != null)
-				return false;
-		} else if (!titular.equals(other.titular))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Conta [id=" + id + ", titular=" + titular + ", banco=" + banco
-				+ ", agencia=" + agencia + ", numero=" + numero + "]";
+	public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+		this.movimentacoes = movimentacoes;
 	}
 	
 }

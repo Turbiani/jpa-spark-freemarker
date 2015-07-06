@@ -3,10 +3,12 @@ package br.com.estudos.jpasparkfreemarker.entity;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -33,7 +35,8 @@ public class Movimentacao {
 	
 	private BigDecimal valor;
 	
-	@ManyToOne//(cascade = CascadeType.PERSIST) //COM O CASCADE AS DEPENDENCIAS NÃO PRECISAM ESTAR MANAGED 
+	//COM O CASCADE AS DEPENDENCIAS NÃO PRECISAM ESTAR MANAGED 
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
 	private Conta conta;
 	
 	@Enumerated(EnumType.STRING)

@@ -22,14 +22,21 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Crud da Entidade Conta</h1>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Painel administrativo</h1>
+			<p>Desevolvido com JPA + MySQL, SparkJava + Freemarker + Bootstrap</p>
+		</div>
+		
+      	<div class="alert alert-success fade in">
+  			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  			<strong>Successo!</strong> Conta excluída do banco de dados.
+		</div>
+		<p>
+			<a href="/conta/lista"><span class="glyphicon glyphicon-list-alt"></span></a>
+		</p>
+    </div>
     
-    <div class="panel panel-default">
-	  <div class="panel-body">Teste</div>
-	</div>
-    
-    
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->

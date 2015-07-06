@@ -55,6 +55,7 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
+      <a href="/conta/"><span class="glyphicon glyphicon-arrow-left"></span></a>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
