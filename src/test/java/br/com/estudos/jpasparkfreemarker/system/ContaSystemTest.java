@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,6 +34,7 @@ public class ContaSystemTest {
 		driver = new FirefoxDriver();
 	}
 	
+	@Ignore
 	@Test
 	public void deveAdicionarUmaConta(){
 		driver.get("http://localhost:8080/conta/cadastra");
