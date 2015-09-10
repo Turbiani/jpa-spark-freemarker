@@ -34,7 +34,6 @@ public class ContaSystemTest {
 		driver = new FirefoxDriver();
 	}
 	
-	@Ignore
 	@Test
 	public void deveAdicionarUmaConta(){
 		driver.get("http://localhost:8080/conta/cadastra");

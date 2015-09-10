@@ -63,7 +63,9 @@ public class MovimentacaoDAO extends AbstractDAO<Movimentacao>{
 	}
 
 	public void adiciona(Movimentacao movimentacao) {
+		this.getEm().getTransaction().begin();
 		this.getEm().persist(movimentacao);
+		this.getEm().getTransaction().commit();
 		fechaEm();
 	}
 

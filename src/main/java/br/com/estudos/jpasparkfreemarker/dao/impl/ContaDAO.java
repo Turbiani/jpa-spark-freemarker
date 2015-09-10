@@ -64,7 +64,9 @@ public class ContaDAO extends AbstractDAO<Conta>{
 	}
 
 	public void adiciona(Conta conta) {
+		this.getEm().getTransaction().begin();
 		this.getEm().persist(conta);
+		this.getEm().getTransaction().commit();
 		fechaEm();
 	}
 

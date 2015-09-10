@@ -112,7 +112,7 @@
 		  <archive>
 			<manifest>
 				<!-- Jar file entry point -->
-				<mainClass>br.com.estudos.jpasparkfreemarker.controller.MainController</mainClass>
+				<mainClass>br.com.leonardo.pre_dojo.controller.MainController</mainClass>
 			</manifest>
 		  </archive>
 		</configuration>

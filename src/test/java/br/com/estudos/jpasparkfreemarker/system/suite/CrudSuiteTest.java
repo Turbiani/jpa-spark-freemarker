@@ -1,7 +1,5 @@
 package br.com.estudos.jpasparkfreemarker.system.suite;
 
-import java.io.IOException;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -15,7 +13,7 @@ import br.com.estudos.jpasparkfreemarker.system.ContaSystemTest;
 @SuiteClasses({ContaSystemTest.class})
 public class CrudSuiteTest {
 	
-	/*@BeforeClass
+	@BeforeClass
 	public static void inicializaServer() {
 		String[] params = null; 
 		MainController.main(params);
@@ -24,6 +22,6 @@ public class CrudSuiteTest {
 	@AfterClass
 	public static void desligaServer(){
 		Runtime.getRuntime().exit(1);
-	}*/
+	}
 	
 }
